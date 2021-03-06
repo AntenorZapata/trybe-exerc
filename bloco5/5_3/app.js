@@ -149,7 +149,7 @@ btnSextou();
 const zoom = () => {
   for (let i of liDay) {
     i.addEventListener("mouseover", (e) => {
-      e.target.style.fontSize = "x-large";
+      e.target.style.transform = "scale(1.3)";
     });
   }
 };
@@ -160,7 +160,7 @@ zoom();
 const zoomOut = () => {
   for (let i of liDay) {
     i.addEventListener("mouseout", (e) => {
-      e.target.style.fontSize = "";
+      e.target.style.transform = "scale(1)";
     });
   }
 };
