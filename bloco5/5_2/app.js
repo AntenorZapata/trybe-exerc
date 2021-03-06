@@ -1,4 +1,4 @@
-//declarando variáveis
+// Elementos
 
 let h1 = document.createElement("h1");
 let div = document.createElement("div");
