@@ -12,3 +12,4 @@ const testingScope = (escopo) => {
 };
 
 testingScope(false);
+
