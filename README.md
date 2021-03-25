@@ -1,1 +1,1 @@
-Exercícios introdutórios - JS
+#Exercícios Curso Trybe
