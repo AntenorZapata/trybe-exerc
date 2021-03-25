@@ -73,19 +73,6 @@ const estudantes = [
   },
 ];
 
-// [
-//     { name: 'Jorge', materia: 'Português' },
-//     { name: 'Mario', materia: 'Biologia' },
-//     { name: 'Jorge', materia: 'Português' },
-//     { name: 'Maria', materia: 'Química' },
-//     { name: 'Natalia', materia: 'Português' },
-//     { name: 'Wilson', materia: 'Português' },
-//   ]
-
-// const red = estudantes[0].materias.reduce((result, item) => {
-//   return item.nota > result.nota ? item : result;
-// });
-
 const maps = estudantes.map((i) => {
   return {
     name: i.nome,
