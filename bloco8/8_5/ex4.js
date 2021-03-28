@@ -44,6 +44,7 @@ assert.deepStrictEqual(filteredPeople[0], {
   bornIn: 1992,
   nationality: "Australian",
 });
+
 assert.deepStrictEqual(filteredPeople[1], {
   name: "Toby",
   bornIn: 1901,
