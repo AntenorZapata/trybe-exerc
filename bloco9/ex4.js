@@ -9,7 +9,6 @@ const getMarsTemperature = () => {
 
 const sendMarsTemperature = () => {
   let temp = getMarsTemperature();
-
   setTimeout(() => console.log(temp), messageDelay());
 };
 
