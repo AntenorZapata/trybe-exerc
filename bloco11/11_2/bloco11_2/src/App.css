@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+.container-pokedex {
+  width: 80%;
+  margin: auto;
+}
+
+.pokemon {
+  display: flex;
+}
