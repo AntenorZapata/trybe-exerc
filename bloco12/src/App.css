@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.pokemons {
+  display: flex;
+
+  width: 15%;
+  margin: auto;
+  justify-content: space-around;
+  align-items: center;
+  height: 10rem;
+}
+
+/* desc-container */
+
+.weight {
+  display: flex;
+  margin-right: 2rem;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.name-type {
+  /* display: flex;
+  flex-direction: column;
+  background-color: red;
+  justify-content: space-around; */
+}
