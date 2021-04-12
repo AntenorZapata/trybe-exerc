@@ -29,6 +29,7 @@ const getUserName = (userID) => {
 
 describe('When user is found', () => {
   test('return user name', () => {
+    expect.assertions(1);
     return getUserName(4).then((nome) => {
       expect(nome).toEqual('Mark');
     });
