@@ -71,6 +71,24 @@ class App extends Component {
     this.handleDiv();
   }
 
+  handleClear() {
+    this.setState({
+      nome: '',
+      email: '',
+      cpf: '',
+      endereco: '',
+      cidade: '',
+      estados: '',
+      casa: false,
+      ap: false,
+      resumo: '',
+      cargo: '',
+      cargoDesc: '',
+      mouseOver: 0,
+      show: false,
+    });
+  }
+
   // Separar os inputs em funções pra diminuir o número de linhas do componente
 
   render() {
@@ -87,6 +105,7 @@ class App extends Component {
                 required
                 name="nome"
                 onChange={this.handleStates.bind(this)}
+                value={this.state.nome}
               />
               <input
                 type="email"
@@ -95,6 +114,7 @@ class App extends Component {
                 placeholder="Insira seu email"
                 name="email"
                 onChange={this.handleStates.bind(this)}
+                value={this.state.email}
               />
               <input
                 type="text"
@@ -103,6 +123,7 @@ class App extends Component {
                 placeholder="Insira seu CPF"
                 name="cpf"
                 onChange={this.handleStates.bind(this)}
+                value={this.state.cpf}
               />
               <input
                 type="text"
@@ -111,6 +132,7 @@ class App extends Component {
                 required
                 name="endereco"
                 onChange={this.handleStates.bind(this)}
+                value={this.state.endereco}
               />
               <input
                 type="text"
@@ -127,6 +149,7 @@ class App extends Component {
                 id=""
                 required
                 onChange={this.handleStates.bind(this)}
+                value={this.state.estados}
               >
                 {states.map((state, index) => (
                   <option key={index}>{state}</option>
@@ -137,6 +160,7 @@ class App extends Component {
                 id="casa"
                 name="casa"
                 onChange={this.handleStates.bind(this)}
+                value={this.state.casa}
               />
               <label htmlFor="case">Casa</label>
               <input
@@ -144,6 +168,7 @@ class App extends Component {
                 id="apartamento"
                 name="ap"
                 onChange={this.handleStates.bind(this)}
+                value={this.state.ap}
               />
               <label htmlFor="apartamento">Apartamento</label>
             </fieldset>
@@ -157,6 +182,7 @@ class App extends Component {
                 maxLength="1000"
                 placeholder="Resumo do Currículo"
                 required
+                value={this.state.resumo}
               ></textarea>
               <input
                 onChange={this.handleStates.bind(this)}
@@ -165,6 +191,7 @@ class App extends Component {
                 required
                 name="cargo"
                 onMouseEnter={this.handleEvent.bind(this)}
+                value={this.state.cargo}
               ></input>
               <textarea
                 onChange={this.handleStates.bind(this)}
@@ -175,12 +202,15 @@ class App extends Component {
                 rows="10"
                 maxLength="500"
                 placeholder="Descrição do cargo"
+                value={this.state.cargoDesc}
               />
             </fieldset>
             <button type="button" onClick={this.handleSubmit}>
               Enviar
             </button>
-            <button type="button">Limpar</button>
+            <button type="button" onClick={this.handleClear.bind(this)}>
+              Limpar
+            </button>
           </form>
         </div>
         {this.state.show ? this.handleDiv() : null}
