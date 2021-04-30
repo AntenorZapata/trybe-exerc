@@ -28,9 +28,7 @@ class App extends Component {
 
   handleStates({ target }) {
     const { name } = target;
-
     const value = target.type === 'radio' ? target.checked : target.value;
-
     this.setState({
       [name]: value,
     });
@@ -47,6 +45,13 @@ class App extends Component {
     if (this.state.mouseOver < 1) {
       alert('Preencha com cuidado esta informação.');
       this.setState({ mouseOver: 1 });
+    }
+  }
+
+  handleBlurEmail() {
+    if (!this.state.email.match(/^\w+@\w+\.\w{2,3}$/)) {
+      alert('Email inválido');
+      this.setState({ email: '' });
     }
   }
 
@@ -103,6 +108,7 @@ class App extends Component {
                 name="email"
                 onChange={this.handleStates.bind(this)}
                 value={this.state.email}
+                onBlur={this.handleBlurEmail.bind(this)}
               />
               <input
                 type="text"
