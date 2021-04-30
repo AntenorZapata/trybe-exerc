@@ -2,26 +2,28 @@ import './App.css';
 import React, { Component } from 'react';
 import states from './data';
 
+const initialState = {
+  nome: '',
+  email: '',
+  cpf: '',
+  endereco: '',
+  cidade: '',
+  estados: '',
+  casa: false,
+  ap: false,
+  resumo: '',
+  cargo: '',
+  cargoDesc: '',
+  mouseOver: 0,
+  show: false,
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
 
-    this.state = {
-      nome: '',
-      email: '',
-      cpf: '',
-      endereco: '',
-      cidade: '',
-      estados: '',
-      casa: false,
-      ap: false,
-      resumo: '',
-      cargo: '',
-      cargoDesc: '',
-      mouseOver: 0,
-      show: false,
-    };
+    this.state = initialState;
   }
 
   handleStates({ target }) {
@@ -72,21 +74,7 @@ class App extends Component {
   }
 
   handleClear() {
-    this.setState({
-      nome: '',
-      email: '',
-      cpf: '',
-      endereco: '',
-      cidade: '',
-      estados: '',
-      casa: false,
-      ap: false,
-      resumo: '',
-      cargo: '',
-      cargoDesc: '',
-      mouseOver: 0,
-      show: false,
-    });
+    this.setState(initialState);
   }
 
   // Separar os inputs em funções pra diminuir o número de linhas do componente
