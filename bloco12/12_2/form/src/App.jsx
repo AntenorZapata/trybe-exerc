@@ -71,6 +71,8 @@ class App extends Component {
     this.handleDiv();
   }
 
+  // Separar os inputs em funções pra diminuir o número de linhas do componente
+
   render() {
     return (
       <div>
