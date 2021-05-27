@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  addTodo,
-  removeTodo,
-  completeTodo,
-  progressTodo,
-  // filterComplted,
-  // filterInProgress,
-  // filterAll,
-} from './actions';
+import { addTodo, removeTodo, completeTodo, progressTodo } from './actions';
 import './App.css';
 import { GrAddCircle } from 'react-icons/gr';
 import { FaHourglassStart } from 'react-icons/fa';
@@ -21,9 +13,8 @@ class App extends Component {
     this.handleValue = this.handleValue.bind(this);
     this.handleSubmitTodo = this.handleSubmitTodo.bind(this);
     this.handleFilterAll = this.handleFilterAll.bind(this);
-    this.handleComplted = this.handleComplted.bind(this);
-    this.handleInProgress = this.handleInProgress.bind(this);
     this.handlerAll = this.handlerAll.bind(this);
+    this.handleFilterTotal = this.handleFilterTotal.bind(this);
 
     this.state = {
       todoValue: '',
@@ -45,54 +36,55 @@ class App extends Component {
       progress: false,
     };
     this.props.addTodo(todoObj);
-    this.setState({ todoValue: '' });
+    this.setState({ todoValue: '', filter: '' });
   }
 
   handleFilterAll() {
     const { todos } = this.props;
     const { filter } = this.state;
-    if (todos.length) {
-      if (!filter) {
-        return todos;
-      } else if (filter === 'completed') {
-        return todos.filter((item) => item.complete === true);
+
+    if (filter === 'completed') {
+      const filtered = todos.filter((item) => item.complete === true);
+      if (filtered.length) {
+        return filtered;
       }
-      return todos.filter((item) => item.progress === true);
-    }
-    return todos;
-  }
-
-  handleComplted() {
-    const { todos } = this.props;
-    const filtered = todos.filter((item) => item.complete === true);
-    if (filtered.length) {
-      this.setState({ filter: 'completed' });
+      return todos;
+    } else if (filter === 'progress') {
+      const filtered = todos.filter((item) => item.progress === true);
+      if (filtered.length) {
+        return filtered;
+      }
+      return todos;
     }
   }
 
-  handleInProgress() {
-    const { todos } = this.props;
-    const filtered = todos.filter((item) => item.progress === true);
-    if (filtered.length) {
-      this.setState({ filter: 'progress' });
-    }
+  handlerAll({ target }) {
+    const { value } = target;
+    this.setState({ filter: value });
   }
 
-  handlerAll() {
-    this.setState({ filter: '' });
-  }
+  handleFilterTotal() {}
 
   render() {
-    const todos = this.handleFilterAll();
-    console.log(todos);
+    const { todos } = this.props;
+    const { filter } = this.state;
+    console.log(filter);
+    const tasks =
+      filter === '' || filter === 'all' ? todos : this.handleFilterAll();
 
     return (
       <div className="App">
         <div className="filters">
           <h4>FIltros:</h4>
-          <button onClick={() => this.handlerAll()}>All</button>
-          <button onClick={() => this.handleComplted()}>Concluidas</button>
-          <button onClick={() => this.handleInProgress()}>In Progress</button>
+          <button value="all" onClick={(e) => this.handlerAll(e)}>
+            All
+          </button>
+          <button value="completed" onClick={(e) => this.handlerAll(e)}>
+            Concluidas
+          </button>
+          <button value="progress" onClick={(e) => this.handlerAll(e)}>
+            In Progress
+          </button>
         </div>
         <div className="input-btn">
           <input
@@ -109,7 +101,7 @@ class App extends Component {
           </GrAddCircle>
         </div>
         <div className="todo-list-container">
-          {todos.map((item, index) => (
+          {tasks.map((item, index) => (
             <ul key={index}>
               <div className={item.progress ? 'progress' : ''}>
                 <li
@@ -142,6 +134,9 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   todos: state.todoList.todos,
+  allTodos: state.todoList.allTodos,
+  completed: state.todoList.completed,
+  progress: state.todoList.progress,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -150,9 +145,6 @@ const mapDispatchToProps = (dispatch) => {
     removeTodo: (todo) => dispatch(removeTodo(todo)),
     completeTodo: (todo) => dispatch(completeTodo(todo)),
     progressTodo: (todo) => dispatch(progressTodo(todo)),
-    // filterComplted: () => dispatch(filterComplted()),
-    // filterInProgress: () => dispatch(filterInProgress()),
-    // filterAll: (todos) => dispatch(filterAll(todos)),
   };
 };
 

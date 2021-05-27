@@ -3,8 +3,7 @@ import {
   DELETE_TODO,
   COMPLETED_TODO,
   PROGRESS_TODO,
-  // FILTER_COMPLETED,
-  // FILTER_INPROGRESS,
+  FILTER_ALL,
 } from '../actions/types';
 
 const initialState = {
@@ -54,25 +53,14 @@ export default function reducer(state = initialState, action) {
             ? { ...item, progress: !progress }
             : item
         ),
+        allTodos: [...state.todos],
       };
 
-    // case FILTER_COMPLETED:
-    //   const filterCompleted = state.todos.filter(
-    //     (item) => item.complete === true
-    //   );
-    //   return {
-    //     ...state,
-    //     todos: filterCompleted.length ? filterCompleted : state.todos,
-    //   };
-
-    // case FILTER_INPROGRESS:
-    //   return {
-    //     ...state,
-    //     todos: state.todos.filter((item) => item.progress === true),
-    //   };
-
-    // case FILTER_ALL:
-    //   return state.todos.filter((item) => item.id);
+    case FILTER_ALL:
+      return {
+        ...state,
+        allTodos: [...state.todos],
+      };
 
     default:
       return state;

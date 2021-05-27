@@ -3,9 +3,9 @@ import {
   DELETE_TODO,
   COMPLETED_TODO,
   PROGRESS_TODO,
-  // FILTER_COMPLETED,
-  // FILTER_INPROGRESS,
-  // FILTER_ALL,
+  FILTER_COMPLETED,
+  FILTER_INPROGRESS,
+  FILTER_ALL,
 } from '../actions/types';
 
 export function addTodo(todo) {
@@ -41,20 +41,8 @@ export function progressTodo(todo) {
   };
 }
 
-// export function filterComplted() {
-//   return {
-//     type: FILTER_COMPLETED,
-//   };
-// }
-
-// export function filterInProgress() {
-//   return {
-//     type: FILTER_INPROGRESS,
-//   };
-// }
-
-// export function filterAll() {
-//   return {
-//     type: FILTER_ALL,
-//   };
-// }
+export function filterAll() {
+  return {
+    type: FILTER_ALL,
+  };
+}
