@@ -3,14 +3,10 @@ import {
   DELETE_TODO,
   COMPLETED_TODO,
   PROGRESS_TODO,
-  FILTER_ALL,
 } from '../actions/types';
 
 const initialState = {
   todos: [],
-  completed: [],
-  progress: [],
-  allTodos: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -53,12 +49,6 @@ export default function reducer(state = initialState, action) {
             ? { ...item, progress: !progress }
             : item
         ),
-        allTodos: [...state.todos],
-      };
-
-    case FILTER_ALL:
-      return {
-        ...state,
         allTodos: [...state.todos],
       };
 
