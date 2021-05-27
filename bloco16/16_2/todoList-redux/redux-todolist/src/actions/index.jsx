@@ -3,8 +3,6 @@ import {
   DELETE_TODO,
   COMPLETED_TODO,
   PROGRESS_TODO,
-  FILTER_COMPLETED,
-  FILTER_INPROGRESS,
   FILTER_ALL,
 } from '../actions/types';
 

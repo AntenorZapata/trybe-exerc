@@ -28,7 +28,6 @@ class App extends Component {
 
   handleSubmitTodo() {
     const { todoValue } = this.state;
-
     const todoObj = {
       id: uuidv1(),
       task: todoValue,
@@ -42,7 +41,6 @@ class App extends Component {
   handleFilterAll() {
     const { todos } = this.props;
     const { filter } = this.state;
-
     if (filter === 'completed') {
       const filtered = todos.filter((item) => item.complete === true);
       if (filtered.length) {
@@ -63,12 +61,9 @@ class App extends Component {
     this.setState({ filter: value });
   }
 
-  handleFilterTotal() {}
-
   render() {
     const { todos } = this.props;
     const { filter } = this.state;
-    console.log(filter);
     const tasks =
       filter === '' || filter === 'all' ? todos : this.handleFilterAll();
 
