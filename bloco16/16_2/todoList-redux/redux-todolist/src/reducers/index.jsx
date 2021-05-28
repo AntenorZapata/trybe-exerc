@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import reducer from './reducer';
+import reducer, { reducerFilter } from './reducer';
 
 export default combineReducers({
   todoList: reducer,

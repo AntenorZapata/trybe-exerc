@@ -3,10 +3,13 @@ import {
   DELETE_TODO,
   COMPLETED_TODO,
   PROGRESS_TODO,
+  FILTER_TODO,
 } from '../actions/types';
+import { v1 as uuidv1 } from 'uuid';
 
 const initialState = {
   todos: [],
+  filter: '',
 };
 
 export default function reducer(state = initialState, action) {
@@ -14,7 +17,15 @@ export default function reducer(state = initialState, action) {
     case ADD_TODO:
       return {
         ...state,
-        todos: [...state.todos, action.payload.todo],
+        todos: [
+          ...state.todos,
+          {
+            id: uuidv1(),
+            task: action.payload.todo,
+            complete: false,
+            progress: false,
+          },
+        ],
       };
 
     case DELETE_TODO:
@@ -24,35 +35,48 @@ export default function reducer(state = initialState, action) {
       };
 
     case COMPLETED_TODO:
-      const bool = state.todos.find(
-        (item) => item.id === action.payload.todo.id
-      ).complete;
-
       return {
         ...state,
         todos: state.todos.map((item) =>
           item.id === action.payload.todo.id
-            ? { ...item, complete: !bool }
+            ? { ...item, complete: !item.complete }
             : item
         ),
       };
 
     case PROGRESS_TODO:
-      const progress = state.todos.find(
-        (item) => item.id === action.payload.todo.id
-      ).progress;
-
       return {
         ...state,
         todos: state.todos.map((item) =>
           item.id === action.payload.todo.id
-            ? { ...item, progress: !progress }
+            ? { ...item, progress: !item.progress }
             : item
         ),
         allTodos: [...state.todos],
       };
 
+    case FILTER_TODO:
+      return {
+        ...state,
+        filter: action.payload.filter,
+      };
+
     default:
       return state;
+  }
+}
+
+export function filterTodos(todos, filter) {
+  switch (filter) {
+    case 'completed':
+      return todos.filter((item) => item.complete === true);
+
+    case 'all':
+      return todos;
+
+    case 'progress':
+      return todos.filter((item) => item.progress === true);
+    default:
+      return todos;
   }
 }

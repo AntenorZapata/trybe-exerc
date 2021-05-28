@@ -3,6 +3,7 @@ import {
   DELETE_TODO,
   COMPLETED_TODO,
   PROGRESS_TODO,
+  FILTER_TODO,
 } from '../actions/types';
 
 export function addTodo(todo) {
@@ -34,6 +35,16 @@ export function progressTodo(todo) {
     type: PROGRESS_TODO,
     payload: {
       todo,
+    },
+  };
+}
+
+export function filterTodo(filter) {
+  // console.log(filter);
+  return {
+    type: FILTER_TODO,
+    payload: {
+      filter,
     },
   };
 }
