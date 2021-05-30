@@ -11,7 +11,7 @@ const initialState = {
   newUsers: [],
   customers: [],
   isActive: false,
-  sort: false,
+  sorted: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -46,7 +46,7 @@ export default function reducer(state = initialState, action) {
     case SORT: {
       return {
         ...state,
-        sort: !state.sort,
+        sorted: !state.sorted,
       };
     }
 
@@ -64,13 +64,17 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export function sortReducer(customers, sort) {
-  switch (sort.type) {
+export function sortReducer(customers, sorted) {
+  switch (sorted) {
+    case true:
+      return [...customers].sort((a, b) => {
+        const name1 = a.name.toUpperCase();
+        const name2 = b.name.toUpperCase();
+        return name1.localeCompare(name2);
+      });
+
     case false:
       return customers;
-
-    case true:
-      return customers.sort((a, b) => a.name - b.name);
 
     default: {
       return customers;

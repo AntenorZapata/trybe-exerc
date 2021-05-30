@@ -16,8 +16,9 @@ class Registeredcustomers extends Component {
         </div>
       );
     }
-    const { customers } = this.props;
+    const { customers, sorted } = this.props;
     console.log(customers);
+
     return (
       <div>
         {!customers.length ? (
@@ -54,7 +55,8 @@ class Registeredcustomers extends Component {
 
 const mapStateToProps = (state) => ({
   isActive: state.isActive,
-  customers: sortReducer(state.customers, state.sort),
+  customers: sortReducer(state.customers, state.sorted),
+  sorted: state.sorted,
 });
 
 const mapDispatchToProps = (dispatch) => {
