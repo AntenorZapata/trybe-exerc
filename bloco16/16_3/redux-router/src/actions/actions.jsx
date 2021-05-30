@@ -1,11 +1,28 @@
-import { REGISTER_CUSTOMER, DELETE_CUSTOMER } from './types';
+import {
+  REGISTER_CUSTOMER,
+  DELETE_CUSTOMER,
+  LOGIN,
+  REGISTER_CLIENT,
+  SORT,
+} from './types';
 
-export function registerCustomer(email, password) {
+export function registerUser(email, password) {
   return {
     type: REGISTER_CUSTOMER,
     payload: {
       email,
       password,
+    },
+  };
+}
+
+export function registerNewClient(name, age, email) {
+  return {
+    type: REGISTER_CLIENT,
+    payload: {
+      name,
+      age,
+      email,
     },
   };
 }
@@ -16,5 +33,17 @@ export function deleteCustomer(customer) {
     payload: {
       customer,
     },
+  };
+}
+
+export function sort() {
+  return {
+    type: SORT,
+  };
+}
+
+export function login() {
+  return {
+    type: LOGIN,
   };
 }

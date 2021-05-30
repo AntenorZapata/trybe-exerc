@@ -8,7 +8,7 @@ export default class Home extends Component {
         <h2>Faça seu login: </h2>
         <Link to="/login">Login</Link>
         <h2>Cadastre-se </h2>
-        <Link to="/registerNewUser">fazer meu cadastro</Link>
+        <Link to="/newuser">fazer meu cadastro</Link>
       </div>
     );
   }

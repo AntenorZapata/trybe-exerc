@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { registerCustomer } from '../actions/actions';
+import { registerUser } from '../actions/actions';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
@@ -27,16 +27,12 @@ class Register extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    if (email && password) {
-      this.props.registerCustomer(email, password);
-      this.setState({ redirect: true });
-    }
+    this.props.registerUser(email, password);
+    this.setState({ redirect: true });
   }
 
   render() {
     const { password, email, redirect } = this.state;
-    const { newUsers } = this.props;
-    console.log(newUsers);
     if (redirect) return <Redirect to="/login" />;
 
     return (
@@ -46,6 +42,7 @@ class Register extends Component {
           <label htmlFor="email">
             Email
             <input
+              required
               name="email"
               value={email}
               onChange={this.handleInputValue}
@@ -56,6 +53,7 @@ class Register extends Component {
           <label htmlFor="password">
             Senha
             <input
+              required
               name="password"
               value={password}
               onChange={this.handleInputValue}
@@ -63,16 +61,6 @@ class Register extends Component {
               type="password"
             />
           </label>
-          {/* <label htmlFor="email">
-            Email
-            <input
-              name="email"
-              value={email}
-              onChange={this.handleInputValue}
-              id="email"
-              type="email"
-            />
-          </label> */}
           <button type="submit">Cadastrar</button>
         </form>
         {/* <Link to="/customers">Clientes Cadastrados</Link> */}
@@ -87,8 +75,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    registerCustomer: (email, password) =>
-      dispatch(registerCustomer(email, password)),
+    registerUser: (email, password) => dispatch(registerUser(email, password)),
   };
 };
 
