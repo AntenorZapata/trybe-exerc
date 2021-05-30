@@ -1,6 +1,6 @@
 import {
   REGISTER_CUSTOMER,
-  DELETE_CUSTOMER,
+  DELETE_CLIENT,
   LOGIN,
   REGISTER_CLIENT,
   SORT,
@@ -27,11 +27,11 @@ export function registerNewClient(name, age, email) {
   };
 }
 
-export function deleteCustomer(customer) {
+export function deleteClient(id) {
   return {
-    type: DELETE_CUSTOMER,
+    type: DELETE_CLIENT,
     payload: {
-      customer,
+      id,
     },
   };
 }

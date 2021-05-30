@@ -1,6 +1,6 @@
 import {
   REGISTER_CUSTOMER,
-  DELETE_CUSTOMER,
+  DELETE_CLIENT,
   LOGIN,
   REGISTER_CLIENT,
   SORT,
@@ -56,8 +56,13 @@ export default function reducer(state = initialState, action) {
         isActive: !state.isActive,
       };
 
-    case DELETE_CUSTOMER:
-      return state;
+    case DELETE_CLIENT:
+      return {
+        ...state,
+        customers: state.customers.filter(
+          (item) => item.id !== action.payload.id
+        ),
+      };
 
     default:
       return state;

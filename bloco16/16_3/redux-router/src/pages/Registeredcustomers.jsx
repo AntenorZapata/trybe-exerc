@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { login } from '../actions/actions';
 import { sortReducer } from '../reducers/index';
-import { sort } from '../actions/actions';
+import { sort, deleteClient } from '../actions/actions';
 
 class Registeredcustomers extends Component {
   render() {
@@ -33,7 +33,9 @@ class Registeredcustomers extends Component {
                 <p>{item.name}</p>
                 <p>{item.age}</p>
                 <p>{item.email}</p>
-                <button>X</button>
+                <button onClick={() => this.props.deleteClient(item.id)}>
+                  X
+                </button>
                 <hr />
               </div>
             ))}
@@ -64,6 +66,7 @@ const mapDispatchToProps = (dispatch) => {
     login: () => dispatch(login()),
     sortReducer: () => dispatch(sortReducer()),
     sort: () => dispatch(sort()),
+    deleteClient: (id) => dispatch(deleteClient(id)),
   };
 };
 
